@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
         #apps 
     "account",
     "task",
@@ -92,7 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = config("TIME_ZONE", default="UTC")
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -117,12 +116,7 @@ MEDIA_ROOT = BASE_DIR /'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use SMTP for production
-# EMAIL_HOST = 'smtp.gmail.com'  # Example for Gmail SMTP server
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'fkwahid007@gmail.com'  # Replace with your email
-# EMAIL_HOST_PASSWORD = 'hhqh rnkx eiqw gojp'  # Replace with your email's password or app password
+
 
 LOGIN_URL = "/account/login/"
 LOGIN_REDIRECT_URL = "/home/"
