@@ -1,0 +1,16 @@
+{% extends "full-base.html" %}
+{% load static %}
+{% block content %}
+<div class="max-w-2xl max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 p-2">
+    <h1>Registration Successful!</h1>
+
+    <div class="mt-2">
+        <p class="mt-2 text-gray-600 dark:text-gray-300">Thank you for registering! A confirmation email has been sent to your email address. Please check your inbox and verify your email to activate your account.</p>
+        <a href="{% url 'account:login' %}" class="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline" tabindex="0" role="link">
+            Go to Login
+        </a>
+    </div>
+
+</div>
+  
+{% endblock content %}

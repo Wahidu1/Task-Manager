@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Your Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        header img {
+            max-height: 60px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        main h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        main p {
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .activate-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .activate-button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f1f1f1;
+            font-size: 14px;
+            color: #777;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="#">
+                <img src="http://{{ domain }}/static/icon/logo.png" alt="Task Manager Logo">
+            </a>
+        </header>
+        <main>
+            <h2>Hi John Doe,</h2>
+            <p>
+                Thank you for signing up! To activate your account, please click the link below:
+            </p>
+            <a href="http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}" class="activate-button">
+                Activate your account
+            </a>
+            <p>If you did not sign up for this account, please ignore this email.</p>
+            <p>
+                Thanks, <br>
+                The {{ domain }} Team
+            </p>
+        </main>
+        <footer>
+            <p>
+                This email was sent to <a href="mailto:contact@example.com">contact@taskmanager.com</a>.
+                If you'd rather not receive this kind of email, you can 
+                <a href="#">unsubscribe</a> or <a href="#">manage your email preferences</a>.
+            </p>
+            <p>© 2025 Task Manager. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

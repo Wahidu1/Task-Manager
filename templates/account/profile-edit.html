@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-2xl font-semibold mb-4">{{ page_title }}</h1>
+        
+        <div class="space-y-4">
+            <div class="flex items-center space-x-4">
+                <!-- Profile Image Preview -->
+                <img id="profile-image-preview" src="{{ user.profile_picture.url }}" alt="Profile Picture" class="w-40 h-40">
+
+                <div class="w-full ps-10">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="space-y-6">
+                             <!-- Username and Email Fields (same as before) -->
+                            <div class="flex flex-col">
+                                <label for="first_name" class="text-sm font-medium text-gray-700">First Name</label>
+                                <input type="text" id="first_name" name="first_name" class="mt-2 p-3 border border-gray-300 rounded-md" value="{{ form.first_name.value }}">
+                                {% if form.first_name.errors %}
+                                    <div class="text-red-500 text-sm mt-1">
+                                        {% for error in form.first_name.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="last_name" class="text-sm font-medium text-gray-700">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" class="mt-2 p-3 border border-gray-300 rounded-md" value="{{ form.last_name.value }}">
+                                {% if form.last_name.errors %}
+                                    <div class="text-red-500 text-sm mt-1">
+                                        {% for error in form.last_name.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" name="email" class="mt-2 p-3 border border-gray-300 rounded-md" value="{{ form.email.value }}">
+                                {% if form.email.errors %}
+                                    <div class="text-red-500 text-sm mt-1">
+                                        {% for error in form.email.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+            
+                            <!-- Profile Picture Field -->
+                            <div class="flex flex-col">
+                                <label for="image" class="text-sm font-medium text-gray-700">Profile Picture</label>
+                                <input type="file" id="id_profile_picture" name="profile_picture" class="mt-2 p-3 border border-gray-300 rounded-md" onchange="previewImage(event)">
+                                {% if form.profile_picture.errors %}
+                                    <div class="text-red-500 text-sm mt-1">
+                                        {% for error in form.profile_picture.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+            
+                            <!-- Bio Field -->
+                            <div class="flex flex-col">
+                                <label for="bio" class="text-sm font-medium text-gray-700">Bio</label>
+                                <textarea id="bio" name="bio" rows="4" class="mt-2 p-3 border border-gray-300 rounded-md">{{ form.bio.value }}</textarea>
+                                {% if form.bio.errors %}
+                                    <div class="text-red-500 text-sm mt-1">
+                                        {% for error in form.bio.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+            
+                            <div class="flex items-center justify-end space-x-4 mt-6">
+                                <a href="{% url 'account:profile' %}" class="text-gray-500 hover:text-gray-700">Cancel</a>
+                                <button type="submit" class="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // Update the image preview
+            const preview = document.getElementById('profile-image-preview');
+            preview.src = e.target.result;
+        }
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+{% endblock %}
